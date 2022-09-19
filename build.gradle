@@ -1,0 +1,30 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = '11'
+group = 'com.biom'
+version = '0.0.1'
+
+dependencies {
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.4.4'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.4.30.Final'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.4.4'
+    implementation group: 'org.flywaydb', name: 'flyway-core', version: '7.7.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.4.4'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.19'
+
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+
+test {
+    useJUnitPlatform()
+}
