@@ -1,8 +1,7 @@
 package com.biom.controller.advice;
 
 import com.biom.controller.advice.exception.UserProfileNotExistException;
-import com.biom.dto.ResponseDto;
-import com.biom.service.UserProfileService;
+import com.biom.pojo.ResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

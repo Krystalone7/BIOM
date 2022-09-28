@@ -1,4 +1,4 @@
-package com.biom.dto;
+package com.biom.pojo;
 
 public class ResponseDto<T> {
 

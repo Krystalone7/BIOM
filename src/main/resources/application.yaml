@@ -17,3 +17,6 @@ spring:
           org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: none
+app:
+  jwtSecret: MegaLargeSigningSecretKeyForDemoApplicationMegaLargeSigningSecretKeyForDemoApplication
+  jwtExpirationMs: 86400000
