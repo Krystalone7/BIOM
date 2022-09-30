@@ -1,24 +1,16 @@
 package com.biom.entity;
 
 import lombok.Data;
+import lombok.Getter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "user")
+@Table(name = "user", schema = "biom")
 public class User {
 
     @Id
@@ -54,10 +46,9 @@ public class User {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    Set<Role> roles = new HashSet<>();
+            name = "roles",
+            joinColumns = @JoinColumn(name = "id"))
+    Set<Role> role = new HashSet<>();
     public User() {
     }
 

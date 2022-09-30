@@ -1,7 +1,8 @@
-package com.biom.service;
+package com.biom.service.impl;
 
 import com.biom.entity.User;
 import com.biom.repository.UserRepository;
+import com.biom.service.impl.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,9 +20,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository
-                .findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username " + username));
+        User user = userRepository.findByUsername(username);
+        if (userRepository.findByUsername(username) == null) throw new UsernameNotFoundException("User not found with username " + username);
         return UserDetailsImpl.build(user);
     }
 }

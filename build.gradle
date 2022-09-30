@@ -13,23 +13,23 @@ group = 'com.biom'
 version = '0.0.1'
 
 dependencies {
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.4.4'
-    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.4.30.Final'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.4.4'
-    implementation group: 'org.flywaydb', name: 'flyway-core', version: '7.7.0'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.4.4'
-    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.26'
-    implementation 'org.projectlombok:lombok:1.18.22'
-    implementation 'org.projectlombok:lombok:1.18.22'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    annotationProcessor('org.projectlombok:lombok:1.18.24')
-    implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.7.3'
-    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
-    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
-    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
-    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359'
-    implementation group: 'javax.xml', name: 'jaxb-impl', version: '2.1'
-    implementation group: 'org.glassfish.jaxb', name: 'jaxb-core', version: '4.0.1'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.4.4'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.26'
+    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
+    // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+    implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '10.1.0'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs
+    implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '5.7.3'
+    implementation 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    //implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.4.30.Final'
+    //implementation group: 'org.flywaydb', name: 'flyway-core', version: '7.7.0'
+    //implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.4.4'
+    //implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.7.3'
+
 
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

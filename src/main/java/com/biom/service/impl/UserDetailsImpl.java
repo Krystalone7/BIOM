@@ -1,8 +1,10 @@
-package com.biom.service;
+package com.biom.service.impl;
 
+import com.biom.entity.Role;
 import com.biom.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,8 +31,7 @@ public class UserDetailsImpl implements UserDetails {
     private String password;
     Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Long id, String username, String name, String surname, LocalDate birthdate, String info, String hobbies, String phone, String email, String password, Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
+    public UserDetailsImpl(String username, String name, String surname, LocalDate birthdate, String info, String hobbies, String phone, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.username = username;
         this.name = name;
         this.surname = surname;
@@ -44,11 +45,10 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     public static UserDetailsImpl build(User user){
-        List<GrantedAuthority> authorities = user.getRoles().stream()
+        List<GrantedAuthority> authorities = user.getRole().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
         return new UserDetailsImpl(
-                user.getId(),
                 user.getUsername(),
                 user.getName(),
                 user.getSurname(),
