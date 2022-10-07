@@ -22,5 +22,10 @@ create table biom.roles
     id bigserial primary key,
     name varchar(25) not null
 );
+create table biom.user_role
+(
+    user_id bigserial,
+    role_id bigserial
+);
 
 insert into biom.user(username, name, surname, password, role_id) values('user', 'darya', 'a', '12345', 1);
