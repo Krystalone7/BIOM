@@ -2,6 +2,8 @@ package com.biom.entity;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -9,12 +11,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "user", schema = "biom")
+@NoArgsConstructor
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq_generator")
+    @SequenceGenerator(name = "user_id_seq_generator",
+            sequenceName = "user_id_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "username")
@@ -45,21 +51,12 @@ public class User {
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "roles",
-            joinColumns = @JoinColumn(name = "id"))
-    Set<Role> role = new HashSet<>();
-    public User() {
-    }
+    @JoinTable(name = "user_role",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    Set<Role> roles;
 
-    public User(String username, String name, String surname, LocalDate birthdate, String info, String hobbies, String phone, String email, String password) {
-        this.username = username;
-        this.name = name;
-        this.surname = surname;
-        this.birthdate = birthdate;
-        this.info = info;
-        this.hobbies = hobbies;
-        this.phone = phone;
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
