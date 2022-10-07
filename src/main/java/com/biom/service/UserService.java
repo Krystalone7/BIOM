@@ -1,13 +1,12 @@
-/*package com.biom.service;
+package com.biom.service;
 
+import com.biom.dto.UserCreateDto;
+import com.biom.dto.UserDto;
 import com.biom.entity.User;
 
 import java.util.List;
 
 public interface UserService {
-    void save(User user);
-    User findByUsername(String username);
-    List<User> allUsers();
-    void deleteUser(Long userId);
-    List<User> usergtList(Long idMin);
-}*/
+    UserDto createUser(UserCreateDto userCreateDto);
+    List<UserDto> getAllUser();
+}
