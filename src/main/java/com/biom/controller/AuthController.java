@@ -1,5 +1,6 @@
 package com.biom.controller;
 
+import com.biom.cookie.CookieToken;
 import com.biom.dto.UserCreateDto;
 import com.biom.dto.UserDto;
 import com.biom.security.data.Authorization;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
     private final Auth auth;
+    private final CookieToken cookieToken;
 
     @PostMapping("/registration")
     public UserDto createUser(UserCreateDto userCreateDto) {
