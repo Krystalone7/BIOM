@@ -1,19 +1,12 @@
 spring:
-  flyway:
-    out-of-order: true
-    ignore-missing-migrations: true
-    schemas: biom
-  security:
-    user:
-      name: admin
-      password: admin
-      roles: ADMIN
   datasource:
     driver-class-name:
       org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=biom
     username: postgres
     password: 123
+  flyway:
+    default-schema: biom
   jpa:
     show-sql: true
     properties:
@@ -22,7 +15,8 @@ spring:
           org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: none
-  messages:
-    basename: validation
+jwt:
+  secret: secret
+  time-life: 30
 server:
   port: 8081
