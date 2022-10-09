@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "roles", schema = "biom")
+@Table(name = "role", schema = "biom")
 public class Role implements GrantedAuthority {
     @Id
     @JoinTable(name = "user_role",

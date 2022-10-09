@@ -1,6 +1,6 @@
 drop table if exists biom.user;
-drop table if exists biom.roles;
-drop table if exists biom.user_roles;
+drop table if exists biom.role;
+drop table if exists biom.user_role;
 
 
 create table biom.user
@@ -14,18 +14,22 @@ create table biom.user
     hobbies   varchar(200),
     phone     varchar(25),
     email     varchar(100),
-    password  varchar(25) not null,
-    role_id integer not null
+    password  varchar(25) not null
 );
-create table biom.roles
+create table biom.role
 (
-    id bigserial primary key,
+    id int primary key,
     name varchar(25) not null
 );
 create table biom.user_role
 (
-    user_id bigserial,
-    role_id bigserial
+    id serial primary key,
+    user_id bigserial not null
+        references biom.user (id),
+    role_id bigserial not null
+        references biom.role (id)
 );
-
-insert into biom.user(username, name, surname, password, role_id) values('user', 'darya', 'a', '12345', 1);
+insert into biom.role
+values
+    (1, 'admin'),
+    (2, 'user');
