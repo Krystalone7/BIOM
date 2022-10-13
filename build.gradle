@@ -8,17 +8,31 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = '11'
 group = 'com.biom'
 version = '0.0.1'
 
 dependencies {
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.4.4'
-    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.4.30.Final'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.4.4'
-    implementation group: 'org.flywaydb', name: 'flyway-core', version: '7.7.0'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.4.4'
-    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.19'
+    implementation 'org.springframework.boot:spring-boot-starter:2.6.7'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.7'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.7'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.6.7'
+    implementation 'org.flywaydb:flyway-core:8.5.11'
+    runtimeOnly 'org.postgresql:postgresql:42.5.0'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
+    implementation 'io.swagger.core.v3:swagger-annotations:2.2.3'
+
+    implementation 'org.mapstruct:mapstruct:1.5.2.Final'
+
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
+
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.6.7'
+
 
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
