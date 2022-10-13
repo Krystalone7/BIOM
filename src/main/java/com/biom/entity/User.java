@@ -1,13 +1,10 @@
 package com.biom.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,7 +20,7 @@ public class User {
             sequenceName = "user_id_seq", allocationSize = 1)
     private Long id;
 
-    @Column(name = "username")
+    /*@Column(name = "username")
     private String username;
 
     @Column(name = "name")
@@ -42,7 +39,7 @@ public class User {
     private String hobbies;
 
     @Column(name = "phone")
-    private String phone;
+    private String phone;*/
 
     @Column(name = "email")
     private String email;

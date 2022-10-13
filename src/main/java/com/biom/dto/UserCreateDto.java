@@ -7,7 +7,6 @@ import lombok.Getter;
 public class UserCreateDto {
 
     private final String email;
-
     private final String password;
 
     public UserCreateDto(@JsonProperty("email") String email,
