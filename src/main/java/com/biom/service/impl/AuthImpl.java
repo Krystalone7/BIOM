@@ -4,6 +4,7 @@ import com.biom.dto.UserCreateDto;
 import com.biom.dto.UserDto;
 import com.biom.entity.Role;
 import com.biom.entity.User;
+import com.biom.repository.RoleRepository;
 import com.biom.repository.UserRepository;
 import com.biom.security.JwtActions;
 import com.biom.security.context.UserContext;
@@ -16,8 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,19 +26,16 @@ public class AuthImpl implements Auth {
     private final PasswordEncoder passwordEncoder;
     private final JwtActions jwtActions;
     private final UserMapper userMapper;
+    private final RoleRepository roleRepository;
 
     @Override
     public Token signIn(Authorization authorization) {
         User user = userRepository.findByEmail(authorization.getUserName()).orElseThrow();
-        Set<String> roles = user.getRoles()
-                .stream()
-                .map(Role::getName)
-                .collect(Collectors.toSet());
 
         UserContext userContext = new UserContext(
                 user.getEmail(),
                 user.getPassword(),
-                roles);
+                user.getRoles());
 
         if (passwordEncoder.matches(authorization.getPassword(), user.getPassword())) {
             return new Token(jwtActions.createToken(userContext));
@@ -50,11 +46,12 @@ public class AuthImpl implements Auth {
 
     @Override
     public UserDto registration(UserCreateDto userCreateDto) {
+        Role role = roleRepository.getById(2L);
         User user = new User(
                 userCreateDto.getEmail(),
                 passwordEncoder.encode(userCreateDto.getPassword())
         );
-        user.setRoles(Collections.singleton(new Role("user")));
+        user.setRoles(Collections.singleton(role));
 
         user = userRepository.saveAndFlush(user);
 
