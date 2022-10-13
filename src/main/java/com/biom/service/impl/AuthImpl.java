@@ -30,10 +30,10 @@ public class AuthImpl implements Auth {
 
     @Override
     public Token signIn(Authorization authorization) {
-        User user = userRepository.findByEmail(authorization.getUserName()).orElseThrow();
+        User user = userRepository.findByUsername(authorization.getUsername()).orElseThrow();
 
         UserContext userContext = new UserContext(
-                user.getEmail(),
+                user.getUsername(),
                 user.getPassword(),
                 user.getRoles());
 

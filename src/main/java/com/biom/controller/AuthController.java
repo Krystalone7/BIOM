@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 @RequiredArgsConstructor
 public class AuthController {
@@ -22,8 +24,9 @@ public class AuthController {
     }
 
     @PostMapping("/auth")
-    public String signIn(Authorization authorization) {
+    public String signIn(HttpServletResponse response, Authorization authorization) {
         Token token = auth.signIn(authorization);
+        cookieToken.createCookieToken(response, token.getToken());
 
         return "Вы успешно вошли в систему!";
     }

@@ -5,11 +5,11 @@ import lombok.Getter;
 
 @Getter
 public class Authorization {
-    private final String userName;
+    private final String username;
     private final String password;
-    public Authorization(@JsonProperty("username") String userName,
+    public Authorization(@JsonProperty("username") String username,
                          @JsonProperty("password") String password) {
-        this.userName = userName;
+        this.username = username;
         this.password = password;
     }
 }
