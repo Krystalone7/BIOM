@@ -1,5 +1,6 @@
 package com.biom.security.context;
 
+import com.biom.entity.Role;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -13,5 +14,5 @@ public class UserContext {
 
     private final String password;
 
-    private final Set<String> roles;
+    private final Set<Role> roles;
 }

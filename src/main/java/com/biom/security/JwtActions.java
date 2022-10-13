@@ -1,5 +1,6 @@
 package com.biom.security;
 
+import com.biom.entity.Role;
 import com.biom.security.context.UserContext;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -11,6 +12,7 @@ import org.springframework.web.client.ResourceAccessException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -30,16 +32,19 @@ public class JwtActions {
         Date dateTimeLife = Date.from(createToken.plusMinutes(timeLife)
                 .atZone(ZoneId.systemDefault()).toInstant());
 
-        String token = Jwts.builder()
+        List<String> roles = userContext.getRoles()
+                .stream()
+                .map(Role::getName)
+                .toList();
+
+        return Jwts.builder()
                 .setId(UUID.randomUUID().toString())
                 .setSubject(userContext.getEmail())
-                .claim("roles", userContext.getRoles())
+                .claim("roles", roles)
                 .setNotBefore(Date.from(createToken.atZone(ZoneId.systemDefault()).toInstant()))
                 .setExpiration(dateTimeLife)
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
-
-        return token;
     }
 
     public boolean validate(String token) {

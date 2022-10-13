@@ -7,7 +7,7 @@ import lombok.Getter;
 public class Authorization {
     private final String userName;
     private final String password;
-    public Authorization(@JsonProperty("userName") String userName,
+    public Authorization(@JsonProperty("username") String userName,
                          @JsonProperty("password") String password) {
         this.userName = userName;
         this.password = password;

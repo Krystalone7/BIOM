@@ -17,6 +17,7 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 public class CustomFilterChain extends GenericFilterBean {
+
     private final JwtActions jwtActions;
     private final CookieToken cookieToken;
 
@@ -27,7 +28,7 @@ public class CustomFilterChain extends GenericFilterBean {
     }
 
     private void setSecurityContext(String token) {
-        if (token != null & jwtActions.validate(token)) {
+        if (token != null && jwtActions.validate(token)) {
             Claims claims = jwtActions.getClaims(token);
             AuthContextImpl authContext = JwtUtils.generate(claims);
             authContext.setAuthenticated(true);
