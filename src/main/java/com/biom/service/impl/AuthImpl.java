@@ -48,6 +48,10 @@ public class AuthImpl implements Auth {
     public UserDto registration(UserCreateDto userCreateDto) {
         Role role = roleRepository.getById(2L);
         User user = new User(
+                userCreateDto.getUsername(),
+                userCreateDto.getName(),
+                userCreateDto.getSurname(),
+                userCreateDto.getBirthdate(),
                 userCreateDto.getEmail(),
                 passwordEncoder.encode(userCreateDto.getPassword())
         );

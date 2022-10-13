@@ -1,4 +1,7 @@
 spring:
+  mvc:
+    format:
+      date: dd/MM/yyyy
   datasource:
     driver-class-name:
       org.postgresql.Driver
