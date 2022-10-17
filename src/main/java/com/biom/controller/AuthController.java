@@ -19,7 +19,7 @@ public class AuthController {
     private final CookieToken cookieToken;
 
     @PostMapping("/registration")
-    public UserDto createUser(UserCreateDto userCreateDto) {
+    public UserDto createUser( UserCreateDto userCreateDto) {
         return auth.registration(userCreateDto);
     }
 

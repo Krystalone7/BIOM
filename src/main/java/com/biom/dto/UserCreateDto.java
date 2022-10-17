@@ -2,6 +2,7 @@ package com.biom.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ public class UserCreateDto {
     private final String username;
     private final String name;
     private final String surname;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)//(без нее выдавало ошибку)
     private final LocalDate birthdate;
     private final String email;
     private final String password;

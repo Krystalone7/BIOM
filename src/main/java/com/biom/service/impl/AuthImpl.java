@@ -30,6 +30,7 @@ public class AuthImpl implements Auth {
 
     @Override
     public Token signIn(Authorization authorization) {
+
         User user = userRepository.findByUsername(authorization.getUsername()).orElseThrow();
 
         UserContext userContext = new UserContext(
@@ -37,6 +38,7 @@ public class AuthImpl implements Auth {
                 user.getPassword(),
                 user.getRoles());
 
+        System.out.println(userContext.getRoles());
         if (passwordEncoder.matches(authorization.getPassword(), user.getPassword())) {
             return new Token(jwtActions.createToken(userContext));
         } else {
@@ -46,6 +48,7 @@ public class AuthImpl implements Auth {
 
     @Override
     public UserDto registration(UserCreateDto userCreateDto) {
+
         Role role = roleRepository.getById(2L);
         User user = new User(
                 userCreateDto.getUsername(),
@@ -55,7 +58,6 @@ public class AuthImpl implements Auth {
                 userCreateDto.getEmail(),
                 passwordEncoder.encode(userCreateDto.getPassword())
         );
-        user.setRoles(Collections.singleton(role));
 
         user = userRepository.saveAndFlush(user);
 

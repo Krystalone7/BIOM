@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Table(name = "role", schema = "biom")
 public class Role implements GrantedAuthority {
     @Id
-    @JoinTable(name = "user_role",
+    @JoinTable(name = "user_role",schema = "biom",
             joinColumns = {@JoinColumn(name = "role_id")})
     private Long id;
 
