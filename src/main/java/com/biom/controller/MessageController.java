@@ -18,9 +18,8 @@ public class MessageController {
 
     @MessageMapping("/sendToUser")
     public void sendToUser(@Payload ChatMessage chatMessage){
-        System.out.println(chatMessage.getMessage()+chatMessage.getSender());
-        Principal principal = (Principal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String authedSender = principal.getName();
+
+        String authedSender = chatMessage.getSender();
         chatMessage.setSender(authedSender);
         String recipient = chatMessage.getRecipient();
         template.convertAndSendToUser(authedSender, "/queue/messages", chatMessage);

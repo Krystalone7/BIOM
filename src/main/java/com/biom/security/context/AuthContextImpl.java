@@ -45,7 +45,7 @@ public class AuthContextImpl implements Authentication {
 
     @Override
     public String getName() {
-        return null;
+        return email;
     }
 
     public void setAuth(boolean auth) {
