@@ -16,10 +16,13 @@ public class CookieToken {
         cookie.setMaxAge(1800);
 
         response.addCookie(cookie);
-        response.setContentType("/cookie/token");
+        //response.setContentType("/cookie/token");
     }
 
     public String getTokenFromCookie(ServletRequest request) {
+        if(((HttpServletRequest) request).getHeader("Token")!=null) {//для подключение к сокетам
+            return ((HttpServletRequest) request).getHeader("Token");
+        }
         if (((HttpServletRequest) request).getCookies() == null) {
             return null;
         }

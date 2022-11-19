@@ -38,7 +38,6 @@ public class AuthImpl implements Auth {
                 user.getPassword(),
                 user.getRoles());
 
-        System.out.println(userContext.getRoles());
         if (passwordEncoder.matches(authorization.getPassword(), user.getPassword())) {
             return new Token(jwtActions.createToken(userContext));
         } else {
