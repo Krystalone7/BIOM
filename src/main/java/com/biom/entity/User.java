@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -32,14 +33,8 @@ public class User {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "birthdate")
-    private LocalDate birthdate;
-
     @Column(name = "info")
     private String info;
-
-    @Column(name = "hobbies")
-    private String hobbies;
 
     @Column(name = "phone")
     private String phone;
@@ -56,11 +51,10 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     Set<Role> roles;
 
-    public User(String username, String name, String surname, LocalDate birthdate, String email, String password) {
+    public User(String username, String name, String surname, String email, String password) {
         this.username = username;
         this.name = name;
         this.surname = surname;
-        this.birthdate = birthdate;
         this.email = email;
         this.password = password;
     }

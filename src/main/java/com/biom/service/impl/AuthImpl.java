@@ -51,7 +51,6 @@ public class AuthImpl implements Auth {
                 userCreateDto.getUsername(),
                 userCreateDto.getName(),
                 userCreateDto.getSurname(),
-                userCreateDto.getBirthdate(),
                 userCreateDto.getEmail(),
                 passwordEncoder.encode(userCreateDto.getPassword())
         );
